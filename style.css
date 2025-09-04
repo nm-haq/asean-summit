@@ -1,0 +1,30 @@
+:root { --lift: translateY(-2px); }
+.hero-gradient { background: linear-gradient(90deg, rgba(2,6,23,0.6), rgba(7,89,133,0.35)); }
+.nav-shadow { box-shadow: 0 2px 10px rgba(2,6,23,0.06); }
+.modal-bg { background: rgba(0,0,0,0.7); }
+
+/* Navigation underline + color transition */
+.nav-link { position: relative; transition: color .2s ease; }
+.nav-link::after { content:""; position:absolute; left:0; bottom:-6px; height:2px; width:0; background:#0284c7; transition:width .2s ease; }
+.nav-link:hover::after, .nav-link[aria-current="page"]::after { width:100%; }
+
+/* Cards lift on hover */
+.card { transition: transform .2s ease, box-shadow .2s ease; }
+.card:hover { transform: var(--lift); box-shadow: 0 10px 24px rgba(2,6,23,.08); }
+
+/* Buttons tiny press effect */
+.btn-ghost { transition: transform .08s ease; }
+.btn-ghost:active { transform: scale(.98); }
+
+/* News ticker */
+@keyframes marquee { 0% { transform: translateX(100%);} 100% { transform: translateX(-100%);} }
+.animate-marquee { display: inline-block; animation: marquee 18s linear infinite; }
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee { animation: none; }
+  .card, .nav-link::after { transition: none; }
+}
+
+/* Keyboard focus only when tabbing */
+body:not(.user-is-tabbing) :focus { outline: none; box-shadow: none; }
